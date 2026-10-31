@@ -1,5 +1,7 @@
 # Deploying to Arc mainnet
 
+A beginner-friendly walkthrough is in [mainnet-step-by-step.md](mainnet-step-by-step.md).
+
 Mainnet uses real USDC and every transaction is irreversible. The contract is immutable (no owner, no upgrade, no pause), so the code you deploy is final. You deploy and operate it yourself, from your own wallet.
 
 ## Before you start
@@ -61,7 +63,7 @@ If the explorer rejects that verifier URL, check the current API address in the 
 ## 5. Build the app for mainnet
 
 ```bash
-VITE_NETWORK=mainnet VITE_SCHEDULER_ADDRESS=<DEPLOYED_ADDRESS> bunx vite build
+VITE_NETWORK=mainnet VITE_SCHEDULER_ADDRESS=<DEPLOYED_ADDRESS> bun run build
 ```
 
 Upload the `dist` folder to your host. Without these two variables the app targets Arc Testnet.
