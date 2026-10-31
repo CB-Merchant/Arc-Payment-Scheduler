@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { erc20Abi, isAddress, type Address } from 'viem'
 import { useAccount, useReadContract } from 'wagmi'
 import { toast } from 'sonner'
-import { Loader2, X } from 'lucide-react'
+import { ExternalLink, Loader2, X } from 'lucide-react'
 import { PAYMENT_SCHEDULER_ABI, PAYMENT_SCHEDULER_ADDRESS } from '@/contracts/paymentScheduler'
 import { useTx } from '@/hooks/useTx'
-import { getUsdc } from '@/onchain-facts'
+import { buildTxExplorerUrl, getUsdc } from '@/onchain-facts'
 import { parseAmount } from '@/onchain-money'
 import { CHAIN_ID, DAY, INTERVAL_PRESETS, fmtUsdc } from '@/lib/schedule'
 
@@ -227,7 +227,7 @@ export function NewScheduleSheet({ open, onClose, onCreated, now }: Props) {
                   <div className="mt-1 flex items-center justify-between text-xs" style={{ color: 'var(--subtle)' }}>
                     <span>USDC</span>
                     <span className="tabular-nums">
-                      {balance.data !== undefined ? `Balance: ${fmtUsdc(balance.data)}` : 'Balance unavailable'}
+                      {balance.data !== undefined ? `Balance: ${fmtUsdc(balance.data)}` : balance.isLoading ? 'Loading balance…' : 'Balance unavailable'}
                     </span>
                   </div>
                 </div>
@@ -358,6 +358,17 @@ export function NewScheduleSheet({ open, onClose, onCreated, now }: Props) {
                     cta
                   )}
                 </button>
+                {tx.phase === 'confirming' && tx.lastHash && (
+                  <a
+                    href={buildTxExplorerUrl(CHAIN_ID, tx.lastHash)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-1 text-xs font-medium"
+                    style={{ color: 'var(--accent-hover)' }}
+                  >
+                    Track this transaction <ExternalLink className="size-3" />
+                  </a>
+                )}
               </div>
             </div>
           </motion.section>

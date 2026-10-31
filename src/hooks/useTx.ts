@@ -30,7 +30,7 @@ export function useTx() {
         const hash = await writeContractAsync({ ...request, chainId: CHAIN_ID })
         setLastHash(hash)
         setPhase('confirming')
-        const receipt = await publicClient?.waitForTransactionReceipt({ hash })
+        const receipt = await publicClient?.waitForTransactionReceipt({ hash, timeout: 90_000, pollingInterval: 1_500 })
         if (receipt && receipt.status !== 'success') throw new Error('reverted')
         return true
       } catch (error) {

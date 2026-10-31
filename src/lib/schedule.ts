@@ -103,6 +103,8 @@ export function parseOnchainError(error: unknown): string | null {
   if (err?.code === 4001 || message.includes('user rejected') || message.includes('user denied')) return null
   if (message.includes('insufficient funds') || message.includes('exceeds balance') || message.includes('transfer amount exceeds'))
     return 'Insufficient balance. Add test USDC and try again.'
+  if (err?.name === 'WaitForTransactionReceiptTimeoutError' || message.includes('timed out while waiting'))
+    return 'Still waiting for confirmation. Check the transaction on the explorer, then refresh this page.'
   if (message.includes('nothingdue')) return 'Nothing is due yet.'
   if (message.includes('startTimeinpast'.toLowerCase())) return 'Start time must be in the future.'
   if (message.includes('notsender')) return 'Only the sender can cancel this schedule.'
