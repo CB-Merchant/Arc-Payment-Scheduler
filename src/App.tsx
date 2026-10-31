@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ConnectKitButton } from 'connectkit'
 import { useAccount } from 'wagmi'
-import { CalendarClock, Plus, Wallet } from 'lucide-react'
+import { Plus, Wallet } from 'lucide-react'
 import { TokenUSDC } from '@web3icons/react'
 import { NewScheduleSheet } from '@/components/NewScheduleSheet'
 import { ScheduleCard } from '@/components/ScheduleCard'
@@ -39,9 +39,7 @@ export default function App() {
     <div className="min-h-dvh">
       <header className="mx-auto flex max-w-2xl items-center justify-between px-5 pb-2 pt-5">
         <div className="flex items-center gap-2.5">
-          <div className="flex size-9 items-center justify-center rounded-xl" style={{ background: 'var(--accent)' }}>
-            <CalendarClock className="size-5 text-white" />
-          </div>
+          <img src="/logo.svg" alt="" width={36} height={36} className="size-9 rounded-xl" />
           <span className="display text-lg font-bold" style={{ color: 'var(--ink)' }}>
             Payment Scheduler
           </span>
