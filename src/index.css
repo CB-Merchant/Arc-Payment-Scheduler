@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --bg-gradient: linear-gradient(180deg, #f9f9fc 0%, #fffcf7 52%, #fbf7f2 100%);
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-strong: rgba(255, 255, 255, 0.9);
+  --surface-muted: #f5f5f8;
+  --ink: #122d45;
+  --ink-2: #334155;
+  --muted: #6b6580;
+  --subtle: #8a849c;
+  --border: rgba(18, 45, 69, 0.12);
+  --border-strong: rgba(25, 53, 77, 0.5);
+  --accent: #122d45;
+  --accent-hover: #1061a6;
+  --focus: #85b1ed;
+  --success: #1a8047;
+  --danger: #ba2b4c;
+  --warn: #9a6700;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+}
+
+.display {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', Menlo, monospace;
+}
+
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(18, 45, 69, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.glass-inner {
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+}
+
+.field {
+  width: 100%;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  min-height: 44px;
+}
+
+.field:focus {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgba(133, 177, 237, 0.3);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  min-height: 48px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: scale(1.01);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: var(--surface-muted);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 13px;
+  min-height: 44px;
+  padding: 0 14px;
+}
+
+.btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
