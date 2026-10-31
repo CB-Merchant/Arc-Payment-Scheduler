@@ -3,6 +3,7 @@ import { useReadContract, useReadContracts } from 'wagmi'
 import type { Address } from 'viem'
 import { PAYMENT_SCHEDULER_ABI, PAYMENT_SCHEDULER_ADDRESS } from '@/contracts/paymentScheduler'
 import { CHAIN_ID, type Schedule } from '@/lib/schedule'
+import { IS_DEPLOYED } from '@/lib/network'
 
 const PAGE = 100n
 const POLL_MS = 15_000
@@ -10,7 +11,7 @@ const POLL_MS = 15_000
 const base = { address: PAYMENT_SCHEDULER_ADDRESS, abi: PAYMENT_SCHEDULER_ABI, chainId: CHAIN_ID } as const
 
 export function useSchedules(account: Address | undefined) {
-  const enabled = Boolean(account)
+  const enabled = Boolean(account) && IS_DEPLOYED
 
   const bySender = useReadContract({
     ...base,

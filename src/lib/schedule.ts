@@ -1,7 +1,9 @@
 import type { Address } from 'viem'
 import { Amount, usdcDecimalsFor } from '@/onchain-money'
 
-export const CHAIN_ID = 5042002
+import { CHAIN_ID } from './network'
+
+export { CHAIN_ID }
 
 export type Schedule = {
   id: bigint

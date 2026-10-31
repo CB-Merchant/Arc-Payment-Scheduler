@@ -1,5 +1,8 @@
 // Generated from contracts/out/PaymentScheduler.sol. Do not edit by hand.
-export const PAYMENT_SCHEDULER_ADDRESS = '0x50bb53d67b0d789e899485751131daf155c3fda9' as const
+import { SCHEDULER_ADDRESS } from '@/lib/network'
+
+/** Address comes from src/lib/network.ts so the same build can target testnet or mainnet. */
+export const PAYMENT_SCHEDULER_ADDRESS = SCHEDULER_ADDRESS
 
 export const PAYMENT_SCHEDULER_ABI = [
   {

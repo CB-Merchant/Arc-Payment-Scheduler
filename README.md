@@ -44,4 +44,11 @@ bun run check
 
 ### Environment variables
 
-None.
+Both are optional build-time settings. With neither set, the app targets Arc Testnet.
+
+- `VITE_NETWORK`: set to `mainnet` to target Arc mainnet.
+- `VITE_SCHEDULER_ADDRESS`: the deployed PaymentScheduler contract address on the selected network. Required for mainnet.
+
+### Mainnet
+
+Mainnet uses real funds and the contract cannot be changed once deployed. See [docs/mainnet-deploy.md](docs/mainnet-deploy.md) for the checklist and deploy steps.

@@ -9,6 +9,7 @@ import { useSchedules } from '@/hooks/useSchedules'
 import { PAYMENT_SCHEDULER_ADDRESS } from '@/contracts/paymentScheduler'
 import { buildAddressExplorerUrl } from '@/onchain-facts'
 import { CHAIN_ID, fmtUsdc, shortAddress, type Schedule } from '@/lib/schedule'
+import { CHAIN_NAME, IS_DEPLOYED, IS_MAINNET } from '@/lib/network'
 
 type Tab = 'sending' | 'receiving'
 
@@ -48,6 +49,17 @@ export default function App() {
       </header>
 
       <main className="mx-auto max-w-2xl space-y-5 px-5 pb-28 pt-3">
+        {IS_MAINNET && (
+          <div
+            role="status"
+            className="rounded-2xl px-4 py-3 text-xs font-medium"
+            style={{ background: 'rgba(154,103,0,0.12)', color: 'var(--warn)' }}
+          >
+            {IS_DEPLOYED
+              ? 'You are on Arc mainnet. Payments use real USDC and cannot be undone.'
+              : 'The mainnet contract address has not been set yet, so scheduling is switched off.'}
+          </div>
+        )}
         <section className="glass-card rounded-3xl p-6">
           <div className="flex items-center gap-1.5">
             <TokenUSDC variant="branded" size={18} />
@@ -66,12 +78,12 @@ export default function App() {
           <p className="mt-1.5 text-xs tabular-nums" style={{ color: 'var(--muted)' }}>
             {isConnected
               ? `${fmtUsdc(incoming)} USDC still to arrive in your wallet`
-              : 'Connect a wallet to see your schedules on Arc Testnet'}
+              : `Connect a wallet to see your schedules on ${CHAIN_NAME}`}
           </p>
           <button
             className="btn-primary mt-5 flex w-full items-center justify-center gap-2"
             onClick={() => setSheetOpen(true)}
-            disabled={!isConnected}
+            disabled={!isConnected || !IS_DEPLOYED}
           >
             <Plus className="size-4" /> New scheduled payment
           </button>
@@ -141,7 +153,7 @@ export default function App() {
           >
             {shortAddress(PAYMENT_SCHEDULER_ADDRESS)}
           </a>{' '}
-          on Arc Testnet. Anyone can release a payment once it is due.
+          on {CHAIN_NAME}. Anyone can release a payment once it is due.
         </p>
       </main>
 
