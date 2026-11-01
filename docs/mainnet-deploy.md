@@ -67,3 +67,8 @@ VITE_NETWORK=mainnet VITE_SCHEDULER_ADDRESS=<DEPLOYED_ADDRESS> bun run build
 ```
 
 Upload the `dist` folder to your host. Without these two variables the app targets Arc Testnet.
+
+## Deployed mainnet instance
+
+- Contract: 0x3A952C6df876DfC624407Fce36953ca945Bcca8D (Arc mainnet, chain ID 5042)
+- Explorer: https://explorer.arc.io/address/0x3A952C6df876DfC624407Fce36953ca945Bcca8D
